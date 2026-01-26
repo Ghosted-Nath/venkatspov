@@ -22,9 +22,7 @@ const CosmosBackground = dynamic(
 );
 
 export default function VenkatsPOV() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState('default');
-
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   // Throttled mouse move (already good)
   useEffect(() => {
     let rafId = null;
@@ -51,17 +49,6 @@ export default function VenkatsPOV() {
 
       <div className="relative min-h-screen text-white overflow-hidden">
 
-        {/* Custom Cursor (desktop-only behavior is fine) */}
-        <div
-          className="fixed w-6 h-6 rounded-full border-2 border-cyan-400 pointer-events-none z-50 mix-blend-difference transition-transform duration-150"
-          style={{
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y}px`,
-            transform: `translate(-50%, -50%) scale(${cursorVariant === 'hover' ? 1.5 : 1})`,
-            willChange: 'transform',
-          }}
-        />
-
         {/* NAVIGATION */}
         <nav className="relative z-20 px-4 sm:px-6 md:px-8 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
@@ -80,29 +67,61 @@ export default function VenkatsPOV() {
             </div>
 
             {/* NAV BUTTONS — ALWAYS PRESENT, SCALE DOWN */}
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-              {['Services', 'Store', 'Cart'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="
-                    px-3 py-1.5
-                    sm:px-4 sm:py-2
-                    md:px-6 md:py-2.5
-                    text-xs sm:text-sm
-                    font-semibold rounded-full
-                    bg-white/5 backdrop-blur-md
-                    border border-white/15
-                    hover:bg-white/10
-                    transition-all duration-300
-                    whitespace-nowrap
-                  "
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
+<div className="flex items-center gap-2 sm:gap-3 md:gap-4">
 
+  {/* SERVICES → REAL PAGE */}
+  <Link
+    href="/services"
+    className="
+      px-3 py-1.5
+      sm:px-4 sm:py-2
+      md:px-6 md:py-2.5
+      text-xs sm:text-sm
+      font-semibold rounded-full
+      bg-white/5 backdrop-blur-md
+      border border-white/15
+      hover:bg-white/10
+      transition-all duration-300
+      whitespace-nowrap
+    "
+  >
+    Services
+  </Link>
+
+  {/* STORE → COMING SOON */}
+  <span
+    className="
+      px-3 py-1.5
+      sm:px-4 sm:py-2
+      md:px-6 md:py-2.5
+      text-xs sm:text-sm
+      font-semibold rounded-full
+      border border-white/10
+      text-slate-500
+      cursor-not-allowed
+      whitespace-nowrap
+    "
+  >
+    Store
+  </span>
+
+  {/* CART → COMING SOON */}
+  <span
+    className="
+      px-3 py-1.5
+      sm:px-4 sm:py-2
+      md:px-6 md:py-2.5
+      text-xs sm:text-sm
+      font-semibold rounded-full
+      border border-white/10
+      text-slate-500
+      cursor-not-allowed
+      whitespace-nowrap
+    "
+  >
+    Cart
+  </span>
+</div>
           </div>
         </nav>
 
