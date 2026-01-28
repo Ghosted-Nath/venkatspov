@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { products } from '../../store/products';
 import Link from 'next/link';
@@ -24,6 +24,16 @@ export default function ProductPage({ params }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [lastAddedType, setLastAddedType] = useState(null);
+
+  const MAX_QUANTITY = 10;
+
+  // Reset "Add to Cart" button when type changes
+  useEffect(() => {
+    if (lastAddedType !== null && lastAddedType !== selectedType) {
+      setIsAddedToCart(false);
+    }
+  }, [selectedType, lastAddedType]);
 
   if (!product) {
     return (
@@ -91,6 +101,7 @@ export default function ProductPage({ params }) {
     setToastMessage(`A4 Print of ${product.title} ${typeText} added to cart`);
     setShowToast(true);
     setIsAddedToCart(true);
+    setLastAddedType(selectedType);
 
     // Hide toast after 3 seconds
     setTimeout(() => {
@@ -104,6 +115,12 @@ export default function ProductPage({ params }) {
     setTimeout(() => {
       window.location.href = '/cart';
     }, 500);
+  };
+
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity >= 1 && newQuantity <= MAX_QUANTITY) {
+      setQuantity(newQuantity);
+    }
   };
 
   // Touch swipe handlers for mobile
@@ -367,14 +384,14 @@ export default function ProductPage({ params }) {
                 </div>
               </div>
 
-              {/* Quantity Selector - Smaller */}
+              {/* Quantity Selector - Max 10 */}
               <div>
                 <label className="block text-xs font-semibold mb-2 text-slate-300 uppercase tracking-wide">
-                  Quantity
+                  Quantity (Max {MAX_QUANTITY})
                 </label>
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    onClick={() => handleQuantityChange(quantity - 1)}
                     disabled={quantity === 1}
                     className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center text-lg font-semibold cursor-pointer"
                   >
@@ -384,17 +401,21 @@ export default function ProductPage({ params }) {
                     <span className="text-2xl font-bold">{quantity}</span>
                   </div>
                   <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center text-lg font-semibold cursor-pointer"
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    disabled={quantity >= MAX_QUANTITY}
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center text-lg font-semibold cursor-pointer"
                   >
                     +
                   </button>
                 </div>
+                {quantity >= MAX_QUANTITY && (
+                  <p className="text-xs text-amber-400 mt-2">Maximum quantity reached</p>
+                )}
               </div>
 
               {/* Action Buttons - Smaller */}
               <div className="space-y-3 pt-3">
-                {isAddedToCart ? (
+                {isAddedToCart && lastAddedType === selectedType ? (
                   <Link
                     href="/cart"
                     className="block w-full py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 font-semibold text-white text-base hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-[1.02] text-center cursor-pointer"
