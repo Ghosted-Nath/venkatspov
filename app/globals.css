@@ -18,9 +18,29 @@ body {
   background: #0a0520;
 }
 
+/* Override cursor for interactive elements */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 @layer utilities {
   .animate-pulse {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 

@@ -50,80 +50,85 @@ export default function VenkatsPOV() {
       <div className="relative min-h-screen text-white overflow-hidden">
 
         {/* NAVIGATION */}
-        <nav className="relative z-20 px-4 sm:px-6 md:px-8 py-4">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+<nav className="relative z-20 px-4 sm:px-6 md:px-8 py-4">
+  <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
 
-            {/* LOGO */}
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              <img
-                src="/venkatspov.png"
-                alt="Venkat's POV"
-                className="w-9 h-9 sm:w-11 sm:h-11 object-contain"
-                draggable="false"
-              />
-              <span className="text-sm sm:text-lg md:text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
-                Venkat&apos;s POV
-              </span>
-            </div>
+    {/* LOGO */}
+    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+      <img
+        src="/venkatspov.png"
+        alt="Venkat's POV"
+        className="w-9 h-9 sm:w-11 sm:h-11 object-contain"
+        draggable="false"
+      />
+      <span className="text-sm sm:text-lg md:text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
+        Venkat&apos;s POV
+      </span>
+    </div>
 
-            {/* NAV BUTTONS — ALWAYS PRESENT, SCALE DOWN */}
-<div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+    {/* NAV BUTTONS */}
+    <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
 
-  {/* SERVICES → REAL PAGE */}
-  <Link
-    href="/services"
-    className="
-      px-3 py-1.5
-      sm:px-4 sm:py-2
-      md:px-6 md:py-2.5
-      text-xs sm:text-sm
-      font-semibold rounded-full
-      bg-white/5 backdrop-blur-md
-      border border-white/15
-      hover:bg-white/10
-      transition-all duration-300
-      whitespace-nowrap
-    "
-  >
-    Services
-  </Link>
+      {/* SERVICES PAGE */}
+      <Link
+        href="/services"
+        className="
+          px-3 py-1.5
+          sm:px-4 sm:py-2
+          md:px-6 md:py-2.5
+          text-xs sm:text-sm
+          font-semibold rounded-full
+          bg-white/5 backdrop-blur-md
+          border border-white/15
+          hover:bg-white/10
+          transition-all duration-300
+          whitespace-nowrap
+        "
+      >
+        Services
+      </Link>
 
-  {/* STORE → COMING SOON */}
-  <span
-    className="
-      px-3 py-1.5
-      sm:px-4 sm:py-2
-      md:px-6 md:py-2.5
-      text-xs sm:text-sm
-      font-semibold rounded-full
-      border border-white/10
-      text-slate-500
-      cursor-not-allowed
-      whitespace-nowrap
-    "
-  >
-    Store
-  </span>
+      {/* STORE PAGE (WILL ENABLE LATER) */}
+      <Link
+        href="/store"
+        className="
+          px-3 py-1.5
+          sm:px-4 sm:py-2
+          md:px-6 md:py-2.5
+          text-xs sm:text-sm
+          font-semibold rounded-full
+          bg-white/5 backdrop-blur-md
+          border border-white/15
+          hover:bg-white/10
+          transition-all duration-300
+          whitespace-nowrap
+        "
+      >
+        Store
+      </Link>
 
-  {/* CART → COMING SOON */}
-  <span
-    className="
-      px-3 py-1.5
-      sm:px-4 sm:py-2
-      md:px-6 md:py-2.5
-      text-xs sm:text-sm
-      font-semibold rounded-full
-      border border-white/10
-      text-slate-500
-      cursor-not-allowed
-      whitespace-nowrap
-    "
-  >
-    Cart
-  </span>
-</div>
-          </div>
-        </nav>
+      {/* CART PAGE */}
+      <Link
+        href="/cart"
+        className="
+          px-3 py-1.5
+          sm:px-4 sm:py-2
+          md:px-6 md:py-2.5
+          text-xs sm:text-sm
+          font-semibold rounded-full
+          bg-white/5 backdrop-blur-md
+          border border-white/15
+          hover:bg-white/10
+          transition-all duration-300
+          whitespace-nowrap
+        "
+      >
+        Cart
+      </Link>
+
+    </div>
+  </div>
+</nav>
 
         {/* HERO SECTION */}
         <section className="relative z-10 px-6 pt-28 sm:pt-32 pb-24 max-w-7xl mx-auto">
