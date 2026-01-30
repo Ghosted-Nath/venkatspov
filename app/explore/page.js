@@ -38,7 +38,7 @@ export default function ExplorePage() {
     {/* ARTWORK */}
     <div className="rounded-3xl overflow-hidden border border-white/10 bg-black">
       <img
-        src="works/dashavatar.jpeg"
+        src="works/dashavatar.webp"
         alt="Dashavatar artwork"
         className="w-full h-auto object-contain"
       />
@@ -51,7 +51,7 @@ export default function ExplorePage() {
       </p>
 
       <h2 className="text-3xl font-semibold mb-6">
-        Dashavatar — Unity in Form
+        Dashavatar - Unity in Form
       </h2>
 
       <p className="text-slate-400 leading-relaxed mb-6">
@@ -86,6 +86,56 @@ export default function ExplorePage() {
   </div>
 </section>
 
+<section className="mb-32">
+  <div className="grid md:grid-cols-2 gap-12 items-start">
+
+    {/* ARTWORK */}
+    <div className="rounded-3xl overflow-hidden border border-white/10 bg-black">
+      <img
+        src="works/navratri-mockup.webp"
+        alt="Navratri artwork"
+        className="w-full h-auto object-contain"
+      />
+    </div>
+
+    {/* EXPLANATION */}
+    <div>
+      <p className="text-xs uppercase tracking-widest text-slate-400 mb-3">
+        Original Work
+      </p>
+
+      <h2 className="text-3xl font-semibold mb-6">
+        Navroop • Navrang - The Nine Nights of Shakti
+      </h2>
+
+      <p className="text-slate-400 leading-relaxed mb-6">
+        This original collection presents the nine forms of Maa Durga through the Navroop Navrang concept, where each form is expressed through its sacred colour. Together, the nine artworks function as a single visual cycle - unfolding strength, devotion, protection, and balance across the nine nights of Navratri.
+      </p>
+
+      <ul className="space-y-3 text-slate-400 leading-relaxed text-sm">
+        <li>• Shailaputri — grounding and purity (yellow)</li>
+        <li>• Brahmacharini — devotion and endurance (green)</li>
+        <li>• Chandraganta — courage and protection (grey)</li>
+        <li>• Kushmanda — creation and vitality (orange)</li>
+        <li>• Skandamata — nurturing strength (white)</li>
+        <li>• Katyayani — righteous power (red)</li>
+        <li>• Kalaratri — destruction of fear (blue)</li>
+        <li>• Mahagauri — clarity and peace (pink)</li>
+        <li>• Siddhidhatri — completion and balance (purple)</li>
+      </ul>
+
+      <a
+        href="/store"
+        className="inline-block mt-10 px-8 py-4 rounded-full
+                   bg-gradient-to-r from-cyan-500 to-purple-600
+                   font-semibold transition hover:scale-105"
+      >
+        View in Store →
+      </a>
+    </div>
+
+  </div>
+</section>
 
         {/* JOURNAL */}
         <section className="space-y-16">

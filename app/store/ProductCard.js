@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function ProductCard({ product }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
   const discountedPrice = Math.round(product.price * (1 - product.discount / 100));
 
   return (
@@ -10,12 +13,23 @@ export default function ProductCard({ product }) {
         {/* Product Image */}
         <div className="relative rounded-xl overflow-hidden bg-slate-900/50 border border-white/10 aspect-square">
           
-          {/* Main Image */}
-          <img
+          {/* Loading skeleton */}
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-slate-800/50 animate-pulse" />
+          )}
+
+          {/* Optimized Image */}
+          <Image
             src={product.images[0]}
             alt={product.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+            className={`object-cover transition-all duration-500 group-hover:scale-110 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
             loading="lazy"
+            quality={85}
           />
 
           {/* Hover Overlay */}

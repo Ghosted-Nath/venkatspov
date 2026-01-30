@@ -6,8 +6,8 @@ export const products = [
     discount: 40,
     limited: true,
     images: [
-      "/works/dashavatar.jpeg",
-      "/works/dashavatar-mockup.jpeg"
+      "/works/dashavatar.webp",
+      "/works/dashavatar-mockup.webp"
     ]
   },
   {
@@ -17,8 +17,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/ganesha.jpeg",
-      "/works/ganesha-mockup.jpeg"
+      "/works/ganesha.webp",
+      "/works/ganesha-mockup.webp"
     ]
   },
   {
@@ -28,8 +28,8 @@ export const products = [
     discount: 45,
     limited: false,
     images: [
-      "/works/ram-and-hanuman.jpeg",
-      "/works/ram-and-hanuman-mockup.jpeg"
+      "/works/ram-and-hanuman.webp",
+      "/works/ram-and-hanuman-mockup.webp"
     ]
   },
   {
@@ -39,8 +39,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/hanuma-bheema-madhwa.jpeg",
-      "/works/hanuma-bheema-madhwa-mockup.jpeg"
+      "/works/hanuma-bheema-madhwa.webp",
+      "/works/hanuma-bheema-madhwa-mockup.webp"
     ]
   },
   {
@@ -50,8 +50,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/hanuman-parvatha.jpeg",
-      "/works/hanuman-parvatha-mockup.jpeg"
+      "/works/hanuman-parvatha.webp",
+      "/works/hanuman-parvatha-mockup.webp"
     ]
   },
   {
@@ -61,8 +61,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/shailaputri.jpeg",
-      "/works/shailaputri-mockup.jpeg"
+      "/works/shailaputri.webp",
+      "/works/shailaputri-mockup.webp"
     ]
   },
   {
@@ -72,8 +72,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/bhramacharini.jpeg",
-      "/works/bhramacharini-mockup.jpeg"
+      "/works/bhramacharini.webp",
+      "/works/bhramacharini-mockup.webp"
     ]
   },
   {
@@ -83,8 +83,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/chandraganta.jpeg",
-      "/works/chandraganta-mockup.jpeg"
+      "/works/chandraganta.webp",
+      "/works/chandraganta-mockup.webp"
     ]
   },
   {
@@ -94,8 +94,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/kushmanda.jpeg",
-      "/works/kushmanda-mockup.jpeg"
+      "/works/kushmanda.webp",
+      "/works/kushmanda-mockup.webp"
     ]
   },
   {
@@ -105,8 +105,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/skandamata.jpeg",
-      "/works/skandamata-mockup.jpeg"
+      "/works/skandamata.webp",
+      "/works/skandamata-mockup.webp"
     ]
   },
   {
@@ -116,8 +116,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/katyayini.jpeg",
-      "/works/katyayini-mockup.jpeg"
+      "/works/katyayini.webp",
+      "/works/katyayini-mockup.webp"
     ]
   },
   {
@@ -127,8 +127,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/kallaratri.jpeg",
-      "/works/kallaratri-mockup.jpeg"
+      "/works/kallaratri.webp",
+      "/works/kallaratri-mockup.webp"
     ]
   },
   {
@@ -138,8 +138,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/mahagauri.jpeg",
-      "/works/mahagauri-mockup.jpeg"
+      "/works/mahagauri.webp",
+      "/works/mahagauri-mockup.webp"
     ]
   },
   {
@@ -149,8 +149,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/siddhidhatri.jpeg",
-      "/works/siddhidhatri-mockup.jpeg"
+      "/works/siddhidhatri.webp",
+      "/works/siddhidhatri-mockup.webp"
     ]
   },
   {
@@ -160,8 +160,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/shiva-parvati.jpeg",
-      "/works/shiva-parvati-mockup.jpeg"
+      "/works/shiva-parvati.webp",
+      "/works/shiva-parvati-mockup.webp"
     ]
   },
   {
@@ -171,8 +171,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/ram-lalla.jpeg",
-      "/works/ram-lalla-mockup.jpeg"
+      "/works/ram-lalla.webp",
+      "/works/ram-lalla-mockup.webp"
     ]
   },
   {
@@ -182,8 +182,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/yashoda-krishna.jpeg",
-      "/works/yashoda-krishna-mockup.jpeg"
+      "/works/yashoda-krishna.webp",
+      "/works/yashoda-krishna-mockup.webp"
     ]
   },
   {
@@ -193,8 +193,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/raghavendra-swamy.jpeg",
-      "/works/raghavendra-swamy-mockup.jpeg"
+      "/works/raghavendra-swamy.webp",
+      "/works/raghavendra-swamy-mockup.webp"
     ]
   },
   {
@@ -204,8 +204,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/sarasvati.jpeg",
-      "/works/sarasvati-mockup.jpeg"
+      "/works/sarasvati.webp",
+      "/works/sarasvati-mockup.webp"
     ]
   },
    {
@@ -215,8 +215,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/hanuman-flying.jpeg",
-      "/works/hanuman-flying-mockup.jpeg"
+      "/works/hanuman-flying.webp",
+      "/works/hanuman-flying-mockup.webp"
     ]
   },
   {
@@ -226,8 +226,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/dussehra.jpeg",
-      "/works/dussehra-mockup.jpeg"
+      "/works/dussehra.webp",
+      "/works/dussehra-mockup.webp"
     ]
   },
   {
@@ -237,8 +237,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/chandrayan.jpeg",
-      "/works/chandrayan-mockup.jpeg"
+      "/works/chandrayan.webp",
+      "/works/chandrayan-mockup.webp"
     ]
   },
   {
@@ -248,8 +248,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/pushpa.jpeg",
-      "/works/pushpa-mockup.jpeg"
+      "/works/pushpa.webp",
+      "/works/pushpa-mockup.webp"
     ]
   },
   {
@@ -259,8 +259,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/Ro-Ko.jpeg",
-      "/works/Ro-Ko-mockup.jpeg"
+      "/works/Ro-Ko.webp",
+      "/works/Ro-Ko-mockup.webp"
     ]
   },
   {
@@ -270,8 +270,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/virat50.jpeg",
-      "/works/virat50-mockup.jpeg"
+      "/works/virat50.webp",
+      "/works/virat50-mockup.webp"
     ]
   },
   {
@@ -281,8 +281,8 @@ export const products = [
     discount: 35,
     limited: true,
     images: [
-      "/works/thar.jpeg",
-      "/works/thar-mockup.jpeg"
+      "/works/thar.webp",
+      "/works/thar-mockup.webp"
     ]
   },
 ];

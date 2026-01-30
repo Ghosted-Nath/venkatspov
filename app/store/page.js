@@ -1,13 +1,13 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { products } from './products';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
 import { Home, ShoppingBag } from 'lucide-react';
 
-// Cosmos background (client-only)
+// Lazy load background with proper fallback
 const CosmosBackground = dynamic(
   () => import('../components/CosmosBackground'),
   {
@@ -16,10 +16,34 @@ const CosmosBackground = dynamic(
   }
 );
 
+// Skeleton loader for products
+function ProductSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="relative rounded-xl overflow-hidden bg-slate-800/50 border border-white/10 aspect-square mb-3" />
+      <div className="h-4 bg-slate-800/50 rounded w-3/4 mb-2" />
+      <div className="h-3 bg-slate-800/50 rounded w-1/2" />
+    </div>
+  );
+}
+
 export default function StorePage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedProducts, setLoadedProducts] = useState([]);
+
+  useEffect(() => {
+    // Simulate progressive loading
+    const timer = setTimeout(() => {
+      setLoadedProducts(products);
+      setIsLoading(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      {/* Background */}
+      {/* Background with proper loading */}
       <Suspense fallback={<div className="fixed inset-0 bg-slate-950" />}>
         <CosmosBackground />
       </Suspense>
@@ -59,13 +83,21 @@ export default function StorePage() {
 
           {/* Products Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.slug} product={product} />
-            ))}
+            {isLoading ? (
+              // Show skeleton loaders while loading
+              Array.from({ length: 10 }).map((_, index) => (
+                <ProductSkeleton key={index} />
+              ))
+            ) : (
+              // Show actual products
+              loadedProducts.map((product) => (
+                <ProductCard key={product.slug} product={product} />
+              ))
+            )}
           </div>
 
-          {/* Empty State (if no products) */}
-          {products.length === 0 && (
+          {/* Empty State */}
+          {!isLoading && loadedProducts.length === 0 && (
             <div className="text-center py-20">
               <ShoppingBag size={64} className="mx-auto text-slate-600 mb-4" />
               <h2 className="text-2xl font-semibold text-white mb-2">No Products Available</h2>
