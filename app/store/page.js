@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { products } from './products';
+import { getAllProducts } from '../lib/products';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
 import { Home, ShoppingBag } from 'lucide-react';
@@ -30,15 +30,30 @@ function ProductSkeleton() {
 export default function StorePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedProducts, setLoadedProducts] = useState([]);
+  const [hasLoadError, setHasLoadError] = useState(false);
 
   useEffect(() => {
-    // Simulate progressive loading
-    const timer = setTimeout(() => {
-      setLoadedProducts(products);
-      setIsLoading(false);
-    }, 100);
+    let isMounted = true;
 
-    return () => clearTimeout(timer);
+    const loadProducts = async () => {
+      try {
+        const products = await getAllProducts();
+        if (!isMounted) return;
+        setLoadedProducts(Array.isArray(products) ? products : []);
+      } catch {
+        if (!isMounted) return;
+        setHasLoadError(true);
+        setLoadedProducts([]);
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -84,17 +99,23 @@ export default function StorePage() {
           {/* Products Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
             {isLoading ? (
-              // Show skeleton loaders while loading
               Array.from({ length: 10 }).map((_, index) => (
                 <ProductSkeleton key={index} />
               ))
             ) : (
-              // Show actual products
               loadedProducts.map((product) => (
                 <ProductCard key={product.slug} product={product} />
               ))
             )}
           </div>
+
+          {hasLoadError && (
+            <div className="text-center py-6">
+              <p className="text-amber-300 text-sm">
+                Could not sync products from backend. Showing fallback catalog.
+              </p>
+            </div>
+          )}
 
           {/* Empty State */}
           {!isLoading && loadedProducts.length === 0 && (
@@ -109,10 +130,11 @@ export default function StorePage() {
         {/* Footer */}
         <footer className="relative z-10 border-t border-white/10 mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
-            <p className="text-sm">© 2026 Venkat's POV. All rights reserved.</p>
+            <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
           </div>
         </footer>
       </div>
     </>
   );
 }
+

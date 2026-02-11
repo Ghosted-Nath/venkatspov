@@ -176,7 +176,7 @@ export default function ServicesPage() {
             <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-white/10 backdrop-blur-sm">
               <h3 className="text-2xl font-semibold mb-3">Have a project in mind?</h3>
               <p className="text-slate-400 mb-6 max-w-md">
-                Let's create something unique together. Get in touch to discuss your vision.
+                Let&apos;s create something unique together. Get in touch to discuss your vision.
               </p>
               <Link
                 href="/#contact"
@@ -192,7 +192,7 @@ export default function ServicesPage() {
         {/* Footer */}
         <footer className="relative z-10 border-t border-white/10 mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
-            <p className="text-sm">© 2026 Venkat's POV. All rights reserved.</p>
+            <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
           </div>
         </footer>
       </div>

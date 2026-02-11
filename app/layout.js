@@ -1,17 +1,38 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './globals.css';
 
 export default function RootLayout({ children }) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const cursorRef = useRef(null);
+  const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
+  const rafRef = useRef(null);
 
   useEffect(() => {
-    const move = (e) =>
-      setMousePos({ x: e.clientX, y: e.clientY });
+    const move = (e) => {
+      mouseRef.current.targetX = e.clientX;
+      mouseRef.current.targetY = e.clientY;
+    };
+
+    const animate = () => {
+      const cursor = cursorRef.current;
+      if (cursor) {
+        mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.22;
+        mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.22;
+
+        cursor.style.transform = `translate3d(${mouseRef.current.x}px, ${mouseRef.current.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
 
     window.addEventListener('mousemove', move);
-    return () => window.removeEventListener('mousemove', move);
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener('mousemove', move);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -19,13 +40,10 @@ export default function RootLayout({ children }) {
       <body>
         {/* GLOBAL CURSOR */}
         <div
+          ref={cursorRef}
           className="fixed w-6 h-6 rounded-full border-2 border-cyan-400
-                     pointer-events-none z-50"
-          style={{
-            left: mousePos.x,
-            top: mousePos.y,
-            transform: 'translate(-50%, -50%)'
-          }}
+                     pointer-events-none z-50 will-change-transform"
+          style={{ transform: 'translate(-50%, -50%)' }}
         />
 
         {children}

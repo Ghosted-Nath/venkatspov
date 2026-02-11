@@ -1,9 +1,16 @@
+
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ChevronLeft, ShoppingCart, Trash2, Plus, Minus, Tag, Check, X as XIcon } from 'lucide-react';
+import {
+  clearCartStorage,
+  MAX_CART_QUANTITY,
+  readCartFromStorage,
+  writeCartToStorage,
+} from '../lib/cart';
 
 // Cosmos background (client-only)
 const CosmosBackground = dynamic(
@@ -28,35 +35,36 @@ export default function CartPage() {
   const COUPON_DISCOUNT = 26; // 26% discount
 
   useEffect(() => {
-    // Load cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    setCartItems(cart);
+    setCartItems(readCartFromStorage());
     setIsLoading(false);
   }, []);
 
   const updateQuantity = (index, newQuantity) => {
-    // If quantity becomes 0, remove the item
-    if (newQuantity === 0) {
+    if (newQuantity <= 0) {
       removeItem(index);
       return;
     }
-    
-    // Update quantity
+
+    const normalizedQuantity = Math.min(
+      MAX_CART_QUANTITY,
+      Math.max(1, Math.round(newQuantity))
+    );
+
     const updatedCart = [...cartItems];
-    updatedCart[index].quantity = newQuantity;
+    updatedCart[index].quantity = normalizedQuantity;
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    writeCartToStorage(updatedCart);
   };
 
   const removeItem = (index) => {
     const updatedCart = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    writeCartToStorage(updatedCart);
   };
 
   const clearCart = () => {
     setCartItems([]);
-    localStorage.removeItem('cart');
+    clearCartStorage();
   };
 
   // Secure coupon validation
@@ -177,7 +185,7 @@ export default function CartPage() {
               </div>
               <h2 className="text-2xl font-semibold text-white mb-3">Your cart is empty</h2>
               <p className="text-slate-400 mb-8 max-w-md mx-auto">
-                Looks like you haven't added any items to your cart yet. Start shopping to fill it up!
+                Looks like you haven&apos;t added any items to your cart yet. Start shopping to fill it up!
               </p>
               <Link
                 href="/store"
@@ -243,14 +251,19 @@ export default function CartPage() {
                           <span className="text-white font-semibold w-8 text-center">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(index, item.quantity + 1)}
+                            disabled={item.quantity >= MAX_CART_QUANTITY}
                             className="w-8 h-8 rounded-lg bg-white/5 border border-white/20 hover:bg-white/10 transition flex items-center justify-center cursor-pointer"
                           >
                             <Plus size={14} />
                           </button>
                         </div>
-                        {item.quantity === 1 && (
-                          <p className="text-xs text-slate-400 mt-1">Click minus to remove item</p>
-                        )}
+                        <p className="text-xs text-slate-400 mt-1">
+                          {item.quantity === 1
+                            ? 'Click minus to remove item'
+                            : item.quantity >= MAX_CART_QUANTITY
+                              ? `Max ${MAX_CART_QUANTITY} reached`
+                              : ''}
+                        </p>
                       </div>
 
                       {/* Price & Remove */}
@@ -289,7 +302,7 @@ export default function CartPage() {
                           type="text"
                           value={couponCode}
                           onChange={handleCouponInputChange}
-                          onKeyPress={(e) => e.key === 'Enter' && validateCoupon()}
+                          onKeyDown={(e) => e.key === 'Enter' && validateCoupon()}
                           placeholder="Enter code"
                           maxLength={20}
                           className="w-full px-4 py-3 bg-slate-900/50 border border-white/10 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors uppercase"
@@ -394,7 +407,7 @@ export default function CartPage() {
         {/* Footer */}
         <footer className="relative z-10 border-t border-white/10 mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
-            <p className="text-sm">© 2026 Venkat's POV. All rights reserved.</p>
+            <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
           </div>
         </footer>
       </div>

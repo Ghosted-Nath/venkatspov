@@ -5,6 +5,10 @@ export const products = [
     price: 1499,
     discount: 40,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/dashavatar.webp",
       "/works/dashavatar-mockup.webp"
@@ -16,6 +20,10 @@ export const products = [
     price: 1299,
     discount: 35,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: -2,
     images: [
       "/works/ganesha.webp",
       "/works/ganesha-mockup.webp"
@@ -27,6 +35,10 @@ export const products = [
     price: 1599,
     discount: 45,
     limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/ram-and-hanuman.webp",
       "/works/ram-and-hanuman-mockup.webp"
@@ -38,6 +50,10 @@ export const products = [
     price: 1299,
     discount: 35,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 1,
     images: [
       "/works/hanuma-bheema-madhwa.webp",
       "/works/hanuma-bheema-madhwa-mockup.webp"
@@ -48,7 +64,11 @@ export const products = [
     title: "Hanuman Lifting Parvatha",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/hanuman-parvatha.webp",
       "/works/hanuman-parvatha-mockup.webp"
@@ -59,7 +79,11 @@ export const products = [
     title: "Goddess Shailaputri",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/shailaputri.webp",
       "/works/shailaputri-mockup.webp"
@@ -70,7 +94,11 @@ export const products = [
     title: "Goddess Bhramacharini",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/bhramacharini.webp",
       "/works/bhramacharini-mockup.webp"
@@ -81,7 +109,11 @@ export const products = [
     title: "Goddess Chandraganta",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/chandraganta.webp",
       "/works/chandraganta-mockup.webp"
@@ -92,7 +124,11 @@ export const products = [
     title: "Goddess Kushmanda",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/kushmanda.webp",
       "/works/kushmanda-mockup.webp"
@@ -103,7 +139,11 @@ export const products = [
     title: "Goddess Skandamata",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/skandamata.webp",
       "/works/skandamata-mockup.webp"
@@ -114,7 +154,11 @@ export const products = [
     title: "Goddess Katyayini",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/katyayini.webp",
       "/works/katyayini-mockup.webp"
@@ -126,6 +170,10 @@ export const products = [
     price: 1299,
     discount: 35,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: -1,
     images: [
       "/works/kallaratri.webp",
       "/works/kallaratri-mockup.webp"
@@ -136,7 +184,11 @@ export const products = [
     title: "Goddess Mahagauri",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/mahagauri.webp",
       "/works/mahagauri-mockup.webp"
@@ -148,6 +200,10 @@ export const products = [
     price: 1299,
     discount: 35,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 2,
     images: [
       "/works/siddhidhatri.webp",
       "/works/siddhidhatri-mockup.webp"
@@ -159,6 +215,10 @@ export const products = [
     price: 1299,
     discount: 35,
     limited: true,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: -2,
     images: [
       "/works/shiva-parvati.webp",
       "/works/shiva-parvati-mockup.webp"
@@ -169,7 +229,11 @@ export const products = [
     title: "Ram Lalla",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/ram-lalla.webp",
       "/works/ram-lalla-mockup.webp"
@@ -180,7 +244,11 @@ export const products = [
     title: "Yashoda and Krishna",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/yashoda-krishna.webp",
       "/works/yashoda-krishna-mockup.webp"
@@ -191,7 +259,11 @@ export const products = [
     title: "Ragahvendra Swamy",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/raghavendra-swamy.webp",
       "/works/raghavendra-swamy-mockup.webp"
@@ -202,7 +274,11 @@ export const products = [
     title: "Goddess Sarasvati",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/sarasvati.webp",
       "/works/sarasvati-mockup.webp"
@@ -213,7 +289,11 @@ export const products = [
     title: "Hanuman with Parvath crossing a River",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/hanuman-flying.webp",
       "/works/hanuman-flying-mockup.webp"
@@ -224,7 +304,11 @@ export const products = [
     title: "Victory over Evil",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/dussehra.webp",
       "/works/dussehra-mockup.webp"
@@ -235,7 +319,11 @@ export const products = [
     title: "Shiv Shakti Point - Chandrayan",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/chandrayan.webp",
       "/works/chandrayan-mockup.webp"
@@ -246,7 +334,11 @@ export const products = [
     title: "Allu Arjun Pushpa Movie",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/pushpa.webp",
       "/works/pushpa-mockup.webp"
@@ -257,7 +349,11 @@ export const products = [
     title: "RoKo 2024 T20WC",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/Ro-Ko.webp",
       "/works/Ro-Ko-mockup.webp"
@@ -268,7 +364,11 @@ export const products = [
     title: "50 ODI Tons",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/virat50.webp",
       "/works/virat50-mockup.webp"
@@ -279,7 +379,11 @@ export const products = [
     title: "Thar",
     price: 1299,
     discount: 35,
-    limited: true,
+    limited: false,
+    framePrice: 700,
+    couponCode: "POV2026",
+    couponDiscount: 26,
+    imageRotateDeg: 0,
     images: [
       "/works/thar.webp",
       "/works/thar-mockup.webp"

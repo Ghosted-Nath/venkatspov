@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -22,24 +22,6 @@ const CosmosBackground = dynamic(
 );
 
 export default function VenkatsPOV() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  // Throttled mouse move (already good)
-  useEffect(() => {
-    let rafId = null;
-
-    const handleMouseMove = (e) => {
-      if (rafId) return;
-
-      rafId = requestAnimationFrame(() => {
-        setMousePos({ x: e.clientX, y: e.clientY });
-        rafId = null;
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
     <>
       {/* Background */}

@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -5,6 +6,7 @@ import { useState } from 'react';
 export default function ProductCard({ product }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const discountedPrice = Math.round(product.price * (1 - product.discount / 100));
+  const imageRotateDeg = Number(product.imageRotateDeg || 0);
 
   return (
     <Link href={`/product/${product.slug}`} className="group block cursor-pointer">
@@ -24,9 +26,10 @@ export default function ProductCard({ product }) {
             alt={product.title}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-            className={`object-cover transition-all duration-500 group-hover:scale-110 ${
+            className={`object-contain transition-all duration-500 group-hover:scale-105 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            style={{ transform: `rotate(${imageRotateDeg}deg)` }}
             onLoad={() => setImageLoaded(true)}
             loading="lazy"
             quality={85}
@@ -34,13 +37,6 @@ export default function ProductCard({ product }) {
 
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          {/* Limited Edition Badge - Positioned at Bottom */}
-          {product.limited && (
-            <span className="absolute bottom-3 left-3 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-              LIMITED PRINTS
-            </span>
-          )}
           
           {/* Quick View Text */}
           <div className="absolute bottom-3 right-3 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -55,6 +51,12 @@ export default function ProductCard({ product }) {
           <h3 className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors line-clamp-2">
             {product.title}
           </h3>
+
+          {product.limited && (
+            <span className="inline-flex w-fit bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-lg">
+              LIMITED PRINTS
+            </span>
+          )}
 
           {/* Price Section */}
           <div className="flex items-center gap-2 text-sm mt-auto flex-wrap">

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { Sparkles } from 'lucide-react';
 
 const CosmosBackground = dynamic(
   () => import('../components/CosmosBackground'),
@@ -12,6 +13,25 @@ export default function ExplorePage() {
   return (
     <>
       <CosmosBackground />
+
+      <nav className="relative z-20 px-4 sm:px-6 md:px-8 py-4 backdrop-blur-lg bg-slate-950/80 border-b border-white/10">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
+          >
+            <span className="font-medium">← Home</span>
+          </Link>
+
+          <Link
+            href="/services"
+            className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
+          >
+            <Sparkles size={20} className="text-cyan-400" />
+            <span className="font-semibold">Services</span>
+          </Link>
+        </div>
+      </nav>
 
       <main className="relative z-10 min-h-screen text-white px-6 py-24 max-w-5xl mx-auto">
 
@@ -192,3 +212,4 @@ function JournalItem({ date, title, text }) {
     </div>
   );
 }
+
