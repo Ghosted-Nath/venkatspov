@@ -4,7 +4,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { ChevronLeft, ShoppingCart, Trash2, Plus, Minus, Tag, Check, X as XIcon } from 'lucide-react';
+import { ChevronLeft, ShoppingCart, Trash2, Plus, Minus, Tag, Check, X as XIcon, CreditCard } from 'lucide-react';
 import {
   clearCartStorage,
   MAX_CART_QUANTITY,
@@ -33,6 +33,23 @@ export default function CartPage() {
 
   const VALID_COUPON = 'POV2026';
   const COUPON_DISCOUNT = 26; // 26% discount
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const previousScrollRestoration = window.history.scrollRestoration;
+      window.history.scrollRestoration = 'manual';
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+      const rafId = window.requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+
+      return () => {
+        window.cancelAnimationFrame(rafId);
+        window.history.scrollRestoration = previousScrollRestoration;
+      };
+    }
+  }, []);
 
   useEffect(() => {
     setCartItems(readCartFromStorage());
@@ -133,12 +150,37 @@ export default function CartPage() {
         <Suspense fallback={<div className="fixed inset-0 bg-slate-950" />}>
           <CosmosBackground />
         </Suspense>
-        <div className="min-h-screen flex items-center justify-center text-white relative z-10">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400 mx-auto"></div>
-            <p className="mt-4 text-slate-400">Loading cart...</p>
+        <div className="relative min-h-screen text-white overflow-hidden">
+          <nav className="relative z-20 px-4 sm:px-6 md:px-8 py-4 backdrop-blur-lg bg-slate-950/80 border-b border-white/10">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <Link
+                href="/store"
+                className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
+              >
+                <ChevronLeft size={20} />
+                <span className="font-medium">Continue Shopping</span>
+              </Link>
+
+              <div className="flex items-center gap-2">
+                <ShoppingCart size={20} className="text-cyan-400" />
+                <span className="font-semibold">Cart</span>
+              </div>
+            </div>
+          </nav>
+
+          <main className="relative z-10 min-h-[60vh] flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-400 mx-auto"></div>
+              <p className="mt-4 text-slate-400">Loading cart...</p>
+            </div>
+          </main>
+
+          <footer className="relative z-10 border-t border-white/10 mt-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
+              <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
+            </div>
+          </footer>
           </div>
-        </div>
       </>
     );
   }
@@ -391,9 +433,13 @@ export default function CartPage() {
                     )}
                   </div>
 
-                  <button className="w-full py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 font-semibold text-white hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer">
+                  <Link
+                    href="/checkout"
+                    className="w-full py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 font-semibold text-white hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <CreditCard size={18} />
                     Proceed to Checkout
-                  </button>
+                  </Link>
 
                   <p className="text-xs text-slate-400 text-center mt-4">
                     Taxes calculated at checkout
