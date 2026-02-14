@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, Suspense } from 'react';
+import { useMemo, useState, Suspense, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
@@ -34,6 +34,7 @@ export default function ProductDetailsClient({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [showToast, setShowToast] = useState(false);
   const [lastAddedType, setLastAddedType] = useState(null);
+  const swipeStartXRef = useRef(null);
 
   const framePrice = Number(product.framePrice ?? 700);
   const couponDiscount = Number(product.couponDiscount ?? 26);
@@ -64,6 +65,45 @@ export default function ProductDetailsClient({ product }) {
     if (nextQuantity >= 1 && nextQuantity <= MAX_CART_QUANTITY) {
       setQuantity(nextQuantity);
     }
+  };
+
+  const showNextImage = () => {
+    if (!Array.isArray(product.images) || product.images.length <= 1) return;
+    setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
+  };
+
+  const showPreviousImage = () => {
+    if (!Array.isArray(product.images) || product.images.length <= 1) return;
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? product.images.length - 1 : prev - 1
+    );
+  };
+
+  const handleTouchStart = (event) => {
+    swipeStartXRef.current = event.touches?.[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (swipeStartXRef.current === null) return;
+
+    const endX = event.changedTouches?.[0]?.clientX;
+    if (typeof endX !== 'number') {
+      swipeStartXRef.current = null;
+      return;
+    }
+
+    const distanceX = endX - swipeStartXRef.current;
+    const SWIPE_THRESHOLD_PX = 40;
+
+    if (Math.abs(distanceX) >= SWIPE_THRESHOLD_PX) {
+      if (distanceX < 0) {
+        showNextImage();
+      } else {
+        showPreviousImage();
+      }
+    }
+
+    swipeStartXRef.current = null;
   };
 
   const addToCart = () => {
@@ -132,6 +172,8 @@ export default function ProductDetailsClient({ product }) {
               <div
                 className="relative rounded-2xl overflow-hidden bg-slate-900/50 border border-white/10"
                 style={{ aspectRatio: '210/297' }}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
               >
                 <Image
                   src={product.images[currentImageIndex]}
@@ -146,6 +188,27 @@ export default function ProductDetailsClient({ product }) {
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full">
                   {currentImageIndex + 1} / {product.images.length}
                 </div>
+
+                {product.images.length > 1 && (
+                  <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 pointer-events-none">
+                    <button
+                      type="button"
+                      onClick={showPreviousImage}
+                      aria-label="Previous product image"
+                      className="pointer-events-auto w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 border border-white/20 text-white text-xl leading-none flex items-center justify-center transition"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextImage}
+                      aria-label="Next product image"
+                      className="pointer-events-auto w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 border border-white/20 text-white text-xl leading-none flex items-center justify-center transition"
+                    >
+                      ›
+                    </button>
+                  </div>
+                )}
               </div>
 
               {product.images.length > 1 && (

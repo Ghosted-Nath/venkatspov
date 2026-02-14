@@ -17,6 +17,29 @@ const supabase = isSupabaseConfigured
 const PRODUCT_COLUMNS =
   'slug, title, price, discount, limited, images, framePrice, couponCode, couponDiscount, imageRotateDeg';
 
+const FALLBACK_PRODUCT_IMAGE = '/works/dashavatar.webp';
+
+const normalizeImages = (rawProduct) => {
+  const normalizedFromArray = Array.isArray(rawProduct?.images)
+    ? rawProduct.images
+    : [];
+
+  const normalizedFromString =
+    typeof rawProduct?.images === 'string' ? [rawProduct.images] : [];
+
+  const normalizedFromLegacyField =
+    typeof rawProduct?.image === 'string' ? [rawProduct.image] : [];
+
+  return [
+    ...normalizedFromArray,
+    ...normalizedFromString,
+    ...normalizedFromLegacyField,
+  ]
+    .map((img) => String(img || '').trim())
+    .filter((img) => img.startsWith('/'))
+    .slice(0, 5);
+};
+
 const sanitizeProduct = (rawProduct) => {
   if (!rawProduct || typeof rawProduct !== 'object') return null;
 
@@ -30,13 +53,9 @@ const sanitizeProduct = (rawProduct) => {
   const couponDiscount = Number(rawProduct.couponDiscount ?? 26);
   const imageRotateDeg = Number(rawProduct.imageRotateDeg ?? 0);
 
-  const images = Array.isArray(rawProduct.images)
-    ? rawProduct.images
-        .filter((img) => typeof img === 'string' && img.startsWith('/'))
-        .slice(0, 5)
-    : [];
+  const images = normalizeImages(rawProduct);
 
-  if (!slug || !title || Number.isNaN(price) || Number.isNaN(discount) || images.length === 0) {
+  if (!slug || !title || Number.isNaN(price) || Number.isNaN(discount)) {
     return null;
   }
 
@@ -50,7 +69,7 @@ const sanitizeProduct = (rawProduct) => {
     couponCode: couponCode || 'POV2026',
     couponDiscount: Math.min(100, Math.max(0, Math.round(couponDiscount))),
     imageRotateDeg: Math.min(20, Math.max(-20, imageRotateDeg)),
-    images,
+    images: images.length > 0 ? images : [FALLBACK_PRODUCT_IMAGE],
   };
 };
 

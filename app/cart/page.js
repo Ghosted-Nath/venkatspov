@@ -1,9 +1,9 @@
-
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, ShoppingCart, Trash2, Plus, Minus, Tag, Check, X as XIcon, CreditCard } from 'lucide-react';
 import {
   clearCartStorage,
@@ -22,6 +22,7 @@ const CosmosBackground = dynamic(
 );
 
 export default function CartPage() {
+  const router = useRouter();
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -177,7 +178,7 @@ export default function CartPage() {
 
           <footer className="relative z-10 border-t border-white/10 mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
-              <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
+              <p className="text-sm">© 2026 Venkat&#39;s POV. All rights reserved.</p>
             </div>
           </footer>
           </div>
@@ -227,7 +228,7 @@ export default function CartPage() {
               </div>
               <h2 className="text-2xl font-semibold text-white mb-3">Your cart is empty</h2>
               <p className="text-slate-400 mb-8 max-w-md mx-auto">
-                Looks like you haven&apos;t added any items to your cart yet. Start shopping to fill it up!
+                Looks like you haven&#39;t added any items to your cart yet. Start shopping to fill it up!
               </p>
               <Link
                 href="/store"
@@ -433,13 +434,25 @@ export default function CartPage() {
                     )}
                   </div>
 
-                  <Link
-                    href="/checkout"
-                    className="w-full py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 font-semibold text-white hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <CreditCard size={18} />
-                    Proceed to Checkout
-                  </Link>
+                  {isCartEmpty ? (
+                    <button
+                      type="button"
+                      disabled
+                      className="w-full py-4 rounded-full font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 bg-slate-700/70 cursor-not-allowed opacity-70"
+                    >
+                      <CreditCard size={18} />
+                      Proceed to Checkout
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => router.push('/checkout')}
+                      className="w-full py-4 rounded-full font-semibold text-white transition-all duration-300 transform flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-[1.02] cursor-pointer"
+                    >
+                      <CreditCard size={18} />
+                      Proceed to Checkout
+                    </button>
+                  )}
 
                   <p className="text-xs text-slate-400 text-center mt-4">
                     Taxes calculated at checkout
@@ -453,7 +466,7 @@ export default function CartPage() {
         {/* Footer */}
         <footer className="relative z-10 border-t border-white/10 mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400">
-            <p className="text-sm">© 2026 Venkat&apos;s POV. All rights reserved.</p>
+            <p className="text-sm">© 2026 Venkat&#39;s POV. All rights reserved.</p>
           </div>
         </footer>
       </div>

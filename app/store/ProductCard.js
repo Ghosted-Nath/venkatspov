@@ -7,6 +7,7 @@ export default function ProductCard({ product }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const discountedPrice = Math.round(product.price * (1 - product.discount / 100));
   const imageRotateDeg = Number(product.imageRotateDeg || 0);
+  const productImage = product?.images?.[0] || '/works/dashavatar.webp';
 
   return (
     <Link href={`/product/${product.slug}`} className="group block cursor-pointer">
@@ -22,7 +23,7 @@ export default function ProductCard({ product }) {
 
           {/* Optimized Image */}
           <Image
-            src={product.images[0]}
+            src={productImage}
             alt={product.title}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
