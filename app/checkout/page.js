@@ -354,14 +354,14 @@ export default function CheckoutPage() {
                             current === index ? null : index
                           )
                         }
-                        className="w-full flex items-center gap-2 p-2 text-left hover:bg-white/5 transition"
+                        className="w-full flex items-center gap-4 p-4 text-left hover:bg-white/5 transition"
                       >
-                        <div className="relative w-10 h-14 rounded overflow-hidden border border-white/10 bg-black/20 flex-shrink-0">
+                        <div className="relative w-16 h-24 rounded overflow-hidden border border-white/10 bg-black/20 flex-shrink-0">
                           <Image
                             src={item.image || '/works/dashavatar.webp'}
                             alt={item.productName}
                             fill
-                            sizes="48px"
+                            sizes="80px"
                             className="object-contain"
                           />
                         </div>
